@@ -2,11 +2,18 @@ import css from './SearchBar.module.css';
 import toast from 'react-hot-toast';
 import { PiSealWarningBold } from 'react-icons/pi';
 import { FiSearch } from 'react-icons/fi';
+import { FC, FormEvent } from 'react';
+import { SearchBarProps } from './SearchBarProps.types';
 
-export default function SearchBar({ onSubmit }) {
-  function handleSubmit(event) {
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    if (event.currentTarget.elements.query.value.trim() === '') {
+
+    const queryInput = event.currentTarget.elements.namedItem(
+      'query'
+    ) as HTMLInputElement;
+
+    if (queryInput.value.trim() === '') {
       toast('Please enter the text to search images', {
         icon: <PiSealWarningBold color="blue" size={22} />,
         style: {
@@ -17,7 +24,7 @@ export default function SearchBar({ onSubmit }) {
       });
       return;
     }
-    onSubmit(event.currentTarget.elements.query.value);
+    onSubmit(queryInput.value);
     event.currentTarget.reset();
   }
 
@@ -41,4 +48,6 @@ export default function SearchBar({ onSubmit }) {
       </form>
     </header>
   );
-}
+};
+
+export default SearchBar;

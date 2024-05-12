@@ -1,6 +1,10 @@
+import { FC } from 'react';
 import css from './LoadMoreBtn.module.css';
+import { LoadMoreBtnProps } from './LoadMoreBtn.types';
 
-export default function LoadMoreBtn({ onLoadMore }) {
+const LoadMoreBtn: FC<LoadMoreBtnProps> = ({
+  onLoadMore,
+}: LoadMoreBtnProps) => {
   return (
     <div className={css.loadMoreBtnWrapper}>
       <button className={css.loadMoreBtn} type="button" onClick={onLoadMore}>
@@ -8,4 +12,6 @@ export default function LoadMoreBtn({ onLoadMore }) {
       </button>
     </div>
   );
-}
+};
+
+export default LoadMoreBtn;

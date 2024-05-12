@@ -1,12 +1,12 @@
-import css from './ImageCard.module.css';
+import { FC } from 'react';
+import { ImageCardProps } from './ImageCard.types';
 
-export default function ImageCard({ image, onOpen }) {
+const ImageCard: FC<ImageCardProps> = ({ image, onOpen }) => {
   return (
     <div>
       <img
         onClick={() =>
           onOpen({
-            isModalOpen: true,
             bigImg: image.urls.regular,
             imgAltDescription: image.alt_description,
             imgLikes: image.likes,
@@ -18,4 +18,6 @@ export default function ImageCard({ image, onOpen }) {
       />
     </div>
   );
-}
+};
+
+export default ImageCard;

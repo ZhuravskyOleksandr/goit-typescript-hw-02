@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import css from './Loader.module.css';
 import { Blocks } from 'react-loader-spinner';
 
-export default function Loader() {
+const Loader: FC = () => {
   return (
     <div className={css.blocksLoader}>
       <Blocks
@@ -13,4 +14,6 @@ export default function Loader() {
       />
     </div>
   );
-}
+};
+
+export default Loader;

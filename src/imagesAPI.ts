@@ -1,8 +1,12 @@
 import axios from 'axios';
+import { UnsplashResponseData } from './common.types';
 
 const API_KEY = 'CejzWCfnZ8jN2JWTpAE7szStVB99Iz9nXC7AB5amxtU';
 
-export async function getImages(query, page) {
+export async function getImages(
+  query: string,
+  page: number
+): Promise<UnsplashResponseData> {
   const response = await axios('https://api.unsplash.com/search/photos', {
     params: {
       client_id: API_KEY,
@@ -12,5 +16,5 @@ export async function getImages(query, page) {
       orientation: 'landscape',
     },
   });
-  return response;
+  return response.data;
 }
